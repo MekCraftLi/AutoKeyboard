@@ -40,7 +40,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define GET_HID_CODE(x) (x - 'a' + 4)
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -132,22 +132,59 @@ int main(void) {
     HAL_Delay(10);
     keyboard(0x00, 0x28); // Enter
 	HAL_Delay(10);
-	mouseBuffer[2] = 0x7F;
-	mouseBuffer[3] = 0x7F;
+	mouseBuffer[2] = 0x5;
+	mouseBuffer[3] = 0x5;
 	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
 	HAL_Delay(10);
 	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
-	HAL_Delay(1000);
-	mouseBuffer[2] = 0 - mouseBuffer[2];
-	mouseBuffer[3] = 0 - mouseBuffer[3];
+	HAL_Delay(10);
 	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	HAL_Delay(500);
+	keyboard(0x00, GET_HID_CODE('w'));
+	keyboard(0x00, GET_HID_CODE('o'));
+	keyboard(0x00, GET_HID_CODE('s'));
+	keyboard(0x00, GET_HID_CODE('h'));
+	keyboard(0x00, GET_HID_CODE('i'));
+	keyboard(0x00, GET_HID_CODE('c'));
+	keyboard(0x00, GET_HID_CODE('h'));
+	keyboard(0x00, GET_HID_CODE('e'));
+	keyboard(0x00, GET_HID_CODE('n'));
+	keyboard(0x00, GET_HID_CODE('j'));
+	keyboard(0x00, GET_HID_CODE('i'));
+	keyboard(0x00, GET_HID_CODE('a'));
+	keyboard(0x00, GET_HID_CODE('x'));
+	keyboard(0x00, GET_HID_CODE('i'));
+	keyboard(0x00, GET_HID_CODE('n'));
+	keyboard(0x00, GET_HID_CODE('g'));
+	keyboard(0x00, 0x2C);
+	keyboard(0x00, 0x36);
 
-    HAL_Delay(5000);
+	keyboard(0x00, GET_HID_CODE('w'));
+	keyboard(0x00, GET_HID_CODE('o'));
+	keyboard(0x00, GET_HID_CODE('s'));
+	keyboard(0x00, GET_HID_CODE('h'));
+	keyboard(0x00, GET_HID_CODE('i'));
+	keyboard(0x00, GET_HID_CODE('g'));
+	keyboard(0x00, GET_HID_CODE('e'));
+	keyboard(0x00, GET_HID_CODE('s'));
+	keyboard(0x00, GET_HID_CODE('h'));
+	keyboard(0x00, GET_HID_CODE('a'));
+	keyboard(0x00, GET_HID_CODE('b'));
+	keyboard(0x00, GET_HID_CODE('i'));
+	keyboard(0x00, 0x2C);
+
+    HAL_Delay(1000);
     keyboard(0x04, 0x3D); // Alt + F4
-    HAL_Delay(3000);
-	mouseBuffer[2] = 0;
-	mouseBuffer[3] = 0;
-	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	keyboard(0x00, 0x28); // Enter
+		mouseBuffer[2] =0 - 0x20;
+	mouseBuffer[3] =0 - 0x10;
+	uint8_t count;
+
 
 
     /* USER CODE END 2 */
@@ -155,6 +192,37 @@ int main(void) {
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
+	mouseBuffer[2] =0 - mouseBuffer[2];
+	mouseBuffer[3] =0 - mouseBuffer[3];
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+	USBD_HID_SendReport(&hUsbDeviceFS, mouseBuffer, 5);
+	HAL_Delay(10);
+
+	HAL_Delay(500);
+	if(count % 3 == 0) {
+		count++;
+		
+	
+	keyboard(0x00, 0x28); // Enter
+	}
 
         /* USER CODE END WHILE */
 
